@@ -1,0 +1,84 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}
+    Sing Up
+{% endblock %}
+
+{% block body %}
+    <main>
+        <section class="py-5">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-sm-9 col-md-7 col-lg-5">
+                        <div class="custom-bg p-2">
+
+                            <div class="my-3 text-center">عضویت در سایت</div>
+                            <form class="" method="post">
+                                {% csrf_token %}
+                                <div style="color: red">
+                                    {{ form.errors }}
+
+                                </div>
+                                <div class="field">
+                                    <i class="fa fa-user"> {{ form.username.label }}: </i>
+                                    {{ form.username }}
+                                </div>
+
+                                <div class="field">
+                                    <i class="fa fa-envelope"> {{ form.email.label }}: </i>
+                                    {{ form.email }}
+                                </div>
+
+                                <div class="field">
+                                    <i class="password-input fa fa-lock"> {{ form.password1.label }}: </i>
+                                    {{ form.password1 }}
+                                </div>
+                                <div class="field">
+                                    <i class="password-input fa fa-lock"> {{ form.password2.label }}: </i>
+                                    {{ form.password2 }}
+                                </div>
+
+                                <div class="pb-2 border-bottom">
+                                    <span class="small">حساب کاربری دارید؟</span>
+                                    <a href="{% url 'login' %}" class="small">
+                                        ورود به حساب
+                                    </a>
+                                </div>
+                                <div class="my-3">
+                                    <button class="btn custom-btn w-100">عضویت</button>
+                                </div>
+                            </form>
+
+
+                            <div class="">
+                                <p class="small text-center my-3">عضویت از طریق حساب‌های کاربری دیگر</p>
+                                <div class="">
+
+                                    <div class="social-accunt">
+
+                                        <a title="Google" class="" href="">
+                                            <img height="24" src="{% static 'image/google.svg' %}"
+                                                 class="d-block m-auto">
+                                        </a>
+
+                                        <a title="GitHub" class="" href="">
+                                            <img height="24" src="{% static 'image/github.svg' %}"
+                                                 class="d-block m-auto">
+                                        </a>
+
+                                        <a title="LinkedIn" class="" href="">
+                                            <img height="24" src="{% static 'image/linkedin.svg' %}"
+                                                 class="d-block m-auto">
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

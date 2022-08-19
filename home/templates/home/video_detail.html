@@ -1,0 +1,226 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}
+    جزِِیات
+{% endblock %}
+
+{% block body %}
+
+    <main>
+        <section class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div>
+                            <!-- video -->
+                            <div class="video-player-box">
+                                <div class="video-icon">
+                                    <div class="btn video-btn" onclick="playvideo()" id="videobtn">
+                                        <img src="{% static 'image/play-video-btn.png' %}" alt="">
+                                    </div>
+                                </div>
+                                <div class="video">
+                                    <video width="100%" id="myVideo" autoplay>
+                                        <source src="{{ course.file.url }}" type="video/mp4">
+                                    </video>
+                                    <img src="{{ course.image.url }}" width="100%" height="100%"
+                                         class="position-absolute video-poster" alt="">
+
+                                    <div class="video-overlay"></div>
+                                    <div class="video-description px-2 text-white">
+
+                                        <p>{{ course.time_video }}</p>
+                                    </div>
+                                    <h5 class="close-btn" onclick="stopPlayer()">X</h5>
+                                </div>
+                            </div>
+                            <!-- end video -->
+                            <!-- title -->
+                            <h3 class="video-title my-3">{{ course.title }}
+                            </h3>
+                            <div class="d-flex align-items-center justify-content-between border-bottom pb-3">
+                                <p class="color78">{{ course.created }}</p>
+                                <div class="d-flex align-items-center view-like">
+                                    <div class="mx-3">
+                                        <span>22</span>
+                                        <i class="fa fa-eye"></i>
+                                    </div>
+                                    <div>
+                                        <span>21</span>
+                                        <i class="fa fa-heart-o" type='button' aria-hidden="true"></i>
+                                        <!-- <i class="fa fa-heart liked" type='button' aria-hidden="true" ></i> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- description -->
+                            <div class="border-bottom pb-3">
+                                <h4 class="my-3">درباره فیلم</h4>
+                                <p class="color78">{{ course.description }}</p>
+
+                                <div class="labels">
+                                    <h4 class="my-3">برچسب ها</h4>
+                                    <ul class="d-flex align-items-center">
+                                        <li><a href="#" title="">#گردشگری</a></li>
+                                        <li><a href="#" title="">#تفریحی </a></li>
+                                        <li><a href="#" title="">#دشت نور</a></li>
+                                        <li><a href="#" title="">#مکان های تفریحی</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- end des -->
+
+                            <!-- comments -->
+                            <div>
+
+                                <div class="py-3">
+                                    <span>{{ course.comment.count }} نظر</span>
+                                </div>
+
+                                {% if request.user.is_authenticated %}
+                                    <form id="body" method="post" action="">
+
+                                        {% csrf_token %}
+                                        <input type="hidden" name="parent_id" id="parent_id">
+                                        <textarea class="w-100 p-2 comment-area" name="body"
+                                                  cols="30" rows="10"
+                                                  placeholder="دیدگاه خود را بنویسید"></textarea>
+                                        <div class="d-flex align-items-center justify-content-end pt-3">
+                                            <button type="submit" class="btn custom-btn">ارسال نظر</button>
+                                        </div>
+                                    </form>
+                                {% else %}
+                                    <p style="color:red">برای کامنت گذاشتن لطفا اول <a href="{% url 'singup' %}">ثبت
+                                        نام</a> کنید</p>
+                                {% endif %}
+
+                                {% for comments in course.comment.all %}
+                                    {% if comments.parent == None %}
+                                        <!-- comment -->
+                                        <div class="comment my-3 p-2">
+                                            <div class=" d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center justify-content-center">
+                                                    {% if comments.username.image %}
+                                                        <img src="{{ comments.username.image.url }}"
+                                                             alt="student" class="teacher-profile">
+                                                    {% else %}
+                                                        <img src="{% static 'image/sutdent-prof.png' %}" alt="student"
+                                                             class="teacher-profile">
+                                                    {% endif %}
+                                                    <p class="user-name pr-2">{{ comments.username }}</p>
+                                                </div>
+                                                <p class="comment-date-time">{{ comments.created }}</p>
+                                            </div>
+                                            <p class="px-4 py-2 comment-text text-justify">{{ comments.body }}</p>
+                                            <div class="d-flex align-items-center justify-content-end reply"
+                                                 type='button'>
+                                                <i class="fa fa-reply"></i>
+                                                <button class="btn" type="submit"
+                                                        onclick="set_value({{ comments.id }})">پاسخ به این نظر
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- end comment -->
+                                        {% for replay in comments.replay.all %}
+                                            <!-- comment child -->
+                                            <div class="comment my-3 p-2 comment-child">
+                                                <div class=" d-flex align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center justify-content-center">
+                                                        {% if replay.username.image %}
+                                                            <img src="{{ replay.username.image.url }}"
+                                                                 alt="student" class="teacher-profile">
+                                                        {% else %}
+                                                            <img src="{% static 'image/sutdent-prof.png' %}"
+                                                                 alt="student"
+                                                                 class="teacher-profile">
+                                                        {% endif %}
+                                                        <p class="user-name pr-2">{{ replay.username }}</p>
+                                                    </div>
+                                                    <p class="comment-date-time">{{ replay.created }}</p>
+                                                </div>
+                                                <p class="px-4 py-2 comment-text text-justify">{{ replay.body }}
+                                                </p>
+                                            </div>
+                                            <!-- end comments child -->
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- main -->
+                        <!-- side -->
+                        <aside class="col-md-4 ">
+                            <div class="custom-bg p-2 teacher-card">
+                                <div class="border-bottom py-3 text-center">
+                                    <h4>درباره استاد</h4>
+                                </div>
+                                <div class="d-flex align-items-center py-3">
+                                    {% if course.author.image %}
+                                        <img src="{{ course.author.image.url }}"
+                                             alt="student" class="teacher-profile">
+                                    {% else %}
+                                        <img src="{% static 'image/sutdent-prof.png' %}" alt="student"
+                                             class="teacher-profile">
+                                    {% endif %}
+                                    <p class="user-name pr-2">{{ course.author.username }}</p>
+                                </div>
+                                <p class="color78 teacher-description py-3">{{ course.author.Description }}</p>
+                                <div class="teacher-social-media d-flex align-items-center justify-content-center flex-wrap">
+                                    <a href=""> <i class="fa fa-instagram"></i></a>
+                                    <a href=""> <i class="fa fa-github"></i></a>
+                                    <a href=""> <i class="fa fa-linkedin"></i></a>
+                                    <a href=""> <i class="fa fa-twitter"></i></a>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                    <!-- end side -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // video-player
+        const videobtn = document.querySelector('.video-btn');
+        const video = document.querySelector('.video');
+        const videotag = document.querySelector('video')
+        const videoDescription = document.querySelector('.video-description')
+        const closeBtn = document.querySelector('.close-btn')
+        const videoPoster = document.querySelector('.video-poster')
+        const videoOverlay = document.querySelector('.video-overlay')
+
+        function stopPlayer() {
+            videobtn.style.display = "block";
+            closeBtn.style.display = 'none';
+            videoPoster.style.display = 'inline'
+            video.style.zIndex = '-1'
+            videotag.pause()
+            videotag.style.borderRadius = '20px'
+            videoDescription.style.display = 'flex'
+            videotag.controls = false
+            videotag.style.borderRadius = '15px'
+            videoOverlay.style.display = 'block'
+        }
+
+        function playvideo() {
+            videobtn.style.display = "none";
+            video.style.zIndex = '22222'
+            videotag.autoplay = true
+            videotag.play()
+            videotag.style.borderRadius = '20px'
+            videotag.controls = true
+            videoDescription.style.display = 'none'
+            closeBtn.style.display = 'block'
+            videoPoster.style.display = 'none'
+            videoOverlay.style.display = 'none'
+        }
+
+        function set_value(id) {
+            document.getElementById('parent_id').value = id;
+            window.location.href = '#body'
+        }
+    </script>
+
+{% endblock %}
