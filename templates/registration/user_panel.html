@@ -1,0 +1,54 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}
+    پنل کاربر
+{% endblock %}
+{% block body %}
+    <main>
+        <section class="py-5">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-sm-9 col-md-8 col-lg-8">
+
+                        <!-- item1 -->
+
+                        <div class="p-3 custom-bg user-details user-item my-2">
+                            <div class="row">
+                                <div class="col-lg-6 mb-4">
+                                    <p class="">نام و نام خانوادگی:</p>
+                                    <h6 class=" font-weight-bold">{{ request.user.get_full_name }}</h6>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <p class="">پست الکترونیک:</p>
+                                    <h6 class=" font-weight-bold">{{ request.user.email }}</h6>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <p class="">شماره تلفن همراه:</p>
+                                    <h6 class=" font-weight-bold">{{ request.user.phone }}</h6>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <p class="">نام کاربری:</p>
+                                    <h6 class=" font-weight-bold">{{ request.user.username }}</h6>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <p class="">توضیحات:</p>
+                                    <h6 class=" font-weight-bold">{{ request.user.description }}</h6>
+                                </div>
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <a class="" href="edit-user-panel.html">
+                                            <i class="fa fa-edit"></i>
+                                            ویرایش اطلاعات شخصی
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
