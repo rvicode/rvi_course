@@ -147,34 +147,39 @@
                                 {% endfor %}
                             </div>
                         </div>
-
+                    </div>
                         <!-- main -->
                         <!-- side -->
-                        <aside class="col-md-4 ">
-                            <div class="custom-bg p-2 teacher-card">
-                                <div class="border-bottom py-3 text-center">
-                                    <h4>درباره استاد</h4>
-                                </div>
-                                <div class="d-flex align-items-center py-3">
-                                    {% if course.author.image %}
-                                        <img src="{{ course.author.image.url }}"
-                                             alt="student" class="teacher-profile">
+
+                    <aside class="col-md-4 ">
+                        <div class="custom-bg p-2 teacher-card">
+                            <div class="border-bottom py-3 text-center">
+                                <h4>درباره استاد</h4>
+                            </div>
+                            <div class="d-flex align-items-center py-3">
+                                {% if course.author.image %}
+                                    <img src="{{ course.author.image.url }}"
+                                         alt="student" class="teacher-profile">
+                                {% else %}
+                                    {% if course.author.profile_pic %}
+                                        <img src="{{ course.author.profile_pic.url }}" alt="student"
+                                             class="teacher-profile">
                                     {% else %}
                                         <img src="{% static 'image/sutdent-prof.png' %}" alt="student"
                                              class="teacher-profile">
                                     {% endif %}
-                                    <p class="user-name pr-2">{{ course.author.username }}</p>
-                                </div>
-                                <p class="color78 teacher-description py-3">{{ course.author.Description }}</p>
-                                <div class="teacher-social-media d-flex align-items-center justify-content-center flex-wrap">
-                                    <a href=""> <i class="fa fa-instagram"></i></a>
-                                    <a href=""> <i class="fa fa-github"></i></a>
-                                    <a href=""> <i class="fa fa-linkedin"></i></a>
-                                    <a href=""> <i class="fa fa-twitter"></i></a>
-                                </div>
+                                {% endif %}
+                                <p class="user-name pr-2">{{ course.author.username }}</p>
                             </div>
-                        </aside>
-                    </div>
+                            <p class="color78 teacher-description py-3">{{ course.author.description }}</p>
+                            <div class="teacher-social-media d-flex align-items-center justify-content-center flex-wrap">
+                                <a href=""> <i class="fa fa-instagram"></i></a>
+                                <a href=""> <i class="fa fa-github"></i></a>
+                                <a href=""> <i class="fa fa-linkedin"></i></a>
+                                <a href=""> <i class="fa fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </aside>
                     <!-- end side -->
                 </div>
             </div>

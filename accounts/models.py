@@ -15,4 +15,4 @@ class CustomUser(AbstractUser):
         verbose_name_plural = 'اکانت های کاربر'
 
     def __str__(self):
-        return self.email
+        return self.username

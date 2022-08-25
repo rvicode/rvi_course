@@ -12,16 +12,22 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-sm-9 col-md-11 col-lg-10">
                         <div class="user-panel custom-bg">
-                            <form action="" method="post">
+                            <form action="" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="user-panel-box">
                                     {{ form.errors }}
-                                    <div class="user-panel-profile">
-                                        <img src="{% static 'image/sutdent-prof.png' %}" alt="">
-                                    </div>
+                                    {% if request.user.profile_pic %}
+                                        <div class="user-panel-profile">
+                                            <a href="{{ request.user.profile_pic.url }}"><img
+                                                    src="{{ request.user.profile_pic.url }}" alt=""></a>
+                                        </div>
+                                    {% else %}
+                                        <div class="user-panel-profile">
+                                            <img src="{% static 'image/sutdent-prof.png' %}" alt="">
+                                        </div>
+                                    {% endif %}
                                     <div class="change-profile-btn">
-                                        {{ form.profile_pic }}
-                                        <button class="btn custom-btn">تغییر عکس پروفایل</button>
+                                        <button type="button" class="btn custom-btn">{{ form.profile_pic }}</button>
                                     </div>
                                     <!-- item -->
                                     <div class="user-panel-field">
@@ -48,11 +54,15 @@
                                         <i class="fa fa-user-circle"></i>
                                         {{ form.username }}
                                     </div>
-                                    <!-- item -->
-                                    <div class="user-panel-field">
-                                        <i class="fa fa-edit"></i>
-                                        {{ form.description }}
-                                    </div>
+
+                                    {% if request.user.is_teacher %}
+                                        <!-- item -->
+                                        <div class="user-panel-field">
+                                            <i class="fa fa-edit"></i>
+                                            {{ form.description }}
+                                        </div>
+                                    {% endif %}
+
                                 </div>
                                 <div class="d-flex justify-content-center mt-3 ">
                                     <button type="submit" class="btn custom-btn w-50">اعمال تغییرات</button>

@@ -14,7 +14,17 @@
                         <!-- item1 -->
 
                         <div class="p-3 custom-bg user-details user-item my-2">
+                            {% if request.user.profile_pic %}
+                             <div class="user-panel-profile">
+                                <img src="{{ request.user.profile_pic.url }}" alt="">
+                            </div>
+                            {% else %}
+                            <div class="user-panel-profile">
+                                <img src="{% static 'image/sutdent-prof.png' %}" alt="">
+                            </div>
+                            {% endif %}
                             <div class="row">
+
                                 <div class="col-lg-6 mb-4">
                                     <p class="">نام و نام خانوادگی:</p>
                                     <h6 class=" font-weight-bold">{{ request.user.get_full_name }}</h6>
@@ -31,10 +41,12 @@
                                     <p class="">نام کاربری:</p>
                                     <h6 class=" font-weight-bold">{{ request.user.username }}</h6>
                                 </div>
+                                {% if request.user.is_teacher %}
                                 <div class="col-lg-6 mb-4">
                                     <p class="">توضیحات:</p>
                                     <h6 class=" font-weight-bold">{{ request.user.description }}</h6>
                                 </div>
+                                {% endif %}
                                 <div class="col-12">
                                     <div class="text-center">
                                         <a class="" href="{% url 'edit_user_panel' %}">
