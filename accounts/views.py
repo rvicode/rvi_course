@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from .models import CustomUser
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, EditCustomUserForm
 
 
 class SingUpView(generic.CreateView):
@@ -15,3 +15,25 @@ class SingUpView(generic.CreateView):
 class UserPanelView(generic.ListView):
     model = CustomUser
     template_name = 'registration/user_panel.html'
+
+
+def edit_user_panel_view(request):
+
+    if not request.user.is_authenticated:
+        return redirect('home:home')
+
+    else:
+        user = request.user
+
+        if request.method == 'POST':
+            form = EditCustomUserForm(request.POST, request.FILES, instance=user)
+            if form is not None:
+                if form.is_valid():
+                    form.save()
+                    return redirect('home:home')
+                else:
+                    return render(request, 'registration/edit_user_panel.html', {'form': form})
+
+        else:
+            form = EditCustomUserForm(instance=user)
+            return render(request, 'registration/edit_user_panel.html', {'form': form})

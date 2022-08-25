@@ -1,0 +1,68 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}
+    ویرایش پنل کاربر
+{% endblock %}
+
+{% block body %}
+    <main>
+        <section class="py-5">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-sm-9 col-md-11 col-lg-10">
+                        <div class="user-panel custom-bg">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="user-panel-box">
+                                    {{ form.errors }}
+                                    <div class="user-panel-profile">
+                                        <img src="{% static 'image/sutdent-prof.png' %}" alt="">
+                                    </div>
+                                    <div class="change-profile-btn">
+                                        {{ form.profile_pic }}
+                                        <button class="btn custom-btn">تغییر عکس پروفایل</button>
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-user"></i>
+                                        {{ form.first_name }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-user"></i>
+                                        {{ form.last_name }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-envelope"></i>
+                                        {{ form.email }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-phone"></i>
+                                        {{ form.phone }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-user-circle"></i>
+                                        {{ form.username }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-edit"></i>
+                                        {{ form.description }}
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center mt-3 ">
+                                    <button type="submit" class="btn custom-btn w-50">اعمال تغییرات</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
