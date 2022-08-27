@@ -9,7 +9,9 @@
                                           alt=""/></a>
             </div>
             <div class="nav-search-btn">
-                <input type="search" placeholder="جستجو">
+                <form action="{% url 'home:search' %}" method="get">
+                    <input name="q" type="search" placeholder="جستجو">
+                </form>
                 <i class="fa fa-search"></i>
             </div>
 

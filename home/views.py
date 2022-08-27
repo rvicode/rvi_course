@@ -1,5 +1,7 @@
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, render
+from django.core.paginator import Paginator
 from django.views import generic
+from django.db.models import Q
 
 from blog.models import Course, Comment
 
@@ -28,3 +30,12 @@ def video_detail_view(request, pk):
             Comment.objects.create(username=request.user, course=course, parent_id=parent_id, body=body)
 
     return render(request, 'home/video_detail.html', {'course': course})
+
+
+def search_view(request):
+    q = request.GET.get('q')
+    list_course = Course.objects.filter(Q(title__icontains=q) | Q(description__icontains=q))
+    paginator = Paginator(list_course, 12)  # Show 12 contacts per page.
+    page_number = request.GET.get('page')
+    course = paginator.get_page(page_number)
+    return render(request, 'home/all_videos.html', {'course': course})
