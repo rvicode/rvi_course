@@ -6,10 +6,17 @@ from django.db.models import Q
 from blog.models import Course, Comment, Category, Language, Field
 
 
-class HomeCoursesView(generic.ListView):
-    queryset = Course.objects.all().order_by('-created')[:6]
+class LastUpdateView(generic.ListView):
+    queryset = Course.objects.all().order_by('-created')[:3]
     template_name = 'home/home.html'
     context_object_name = 'course'
+
+
+class AllVideoUpdateView(generic.ListView):
+    queryset = Course.objects.all().order_by('-created')
+    template_name = 'home/all_videos.html'
+    context_object_name = 'course'
+    paginate_by = 12
 
 
 class AllVideoView(generic.ListView):

@@ -9,8 +9,8 @@
         <section class="py-5">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h2 class="title-section">تازه ترین ویدیو ها</h2>
-                    <a href="{% url 'home:all_video' %}" class="btn custom-btn">
+                    <h2 class="title-section">آخرین بروزرسانی</h2>
+                    <a href="{% url 'home:all_video_update' %}" class="btn custom-btn">
                         نمایش همه
                     </a>
                 </div>
@@ -20,7 +20,7 @@
                     <div class="col-md-6 col-lg-4 my-2">
                         <div class="custom-bg">
                             <div class="video-card">
-                                <a href="{% url 'home:detail_video' item.id %}" class="position-relative d-block ">
+                                <a href="{{ item.get_absolute_url }}" class="position-relative d-block ">
                                     <img src="{{ item.image.url }}" alt="" class="img-fluid w-100 h-100">
                                     <div class="video-play-btn">
                                         <i class="fa fa-play"></i>
