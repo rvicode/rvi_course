@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from django.views import generic
 from django.db.models import Q
 
-from blog.models import Course, Comment
+from blog.models import Course, Comment, Category, Language, Field
 
 
 class HomeCoursesView(generic.ListView):
@@ -17,6 +17,24 @@ class AllVideoView(generic.ListView):
     template_name = 'home/all_videos.html'
     context_object_name = 'course'
     paginate_by = 12
+
+
+def category_list(request, pk):
+    video = get_object_or_404(Category, id=pk)
+    course = video.category.all()
+    return render(request, 'home/all_videos.html', {'course': course})
+
+
+def language_list(request, pk):
+    video = get_object_or_404(Language, id=pk)
+    course = video.language.all()
+    return render(request, 'home/all_videos.html', {'course': course})
+
+
+def field_list(request, pk):
+    video = get_object_or_404(Field, id=pk)
+    course = video.field.all()
+    return render(request, 'home/all_videos.html', {'course': course})
 
 
 def video_detail_view(request, pk):

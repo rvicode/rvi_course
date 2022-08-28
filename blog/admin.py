@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Course, Comment
+from .models import Category, Course, Comment, Field, Language
 
 
 @admin.register(Course)
@@ -16,3 +16,13 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommentsAdmin(admin.ModelAdmin):
     list_display = ('username', 'course', 'body', 'parent',)
+
+
+@admin.register(Field)
+class FieldsAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+
+
+@admin.register(Language)
+class LanguagesAdmin(admin.ModelAdmin):
+    list_display = ('title',)

@@ -1,46 +1,28 @@
 <nav class="nav-menu nav-menu-pc  d-none d-md-flex px-4" id="navbar">
+    <li id="" class="mx-3 menu-item"><a href="{% url 'home:home' %}" class="nav-menu-item ">خانه</a></li>
     <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item ">زبان های برنامه نویسی </a>
         <ul class="sub-menu">
-            <a href="">جاوا</a>
-            <a href="">پایتون </a>
-            <a href="">آیتم</a>
-            <a href=""> آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
+            {% for lan in language %}
+            <a href="{% url 'home:language_list' lan.id %}">{{ lan.title }}</a>
+            {% endfor %}
         </ul>
     </li>
     <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item">فریمورک </a>
         <ul class="sub-menu">
-            <a href="">جنگو</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
+            {% for fie in field %}
+            <a href="{% url 'home:field_list' fie.id %}">{{ fie.title }}</a>
+            {% endfor %}
         </ul>
     </li>
-    <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item">طراحی وب</a>
+    <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item">حوضه های برنامه نویسی</a>
         <ul class="sub-menu">
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
+            {% for cat in category %}
+            <a href="{% url 'home:category_list' cat.id %}">{{ cat.title }}</a>
+            {% endfor %}
         </ul>
     </li>
-    <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item">مهارت های ارتباطی</a>
-        <ul class="sub-menu">
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-            <a href="">آیتم</a>
-        </ul>
+    <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item">مدرسین</a></li>
+    <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item ">درباره ما </a></li>
+    <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item ">ارتباط با ما </a>
     </li>
 </nav>
