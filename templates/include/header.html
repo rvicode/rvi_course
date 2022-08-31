@@ -81,24 +81,24 @@
             <div class="bar3"></div>
         </div>
         <div class="logo">
-            <a href="index.html"><img src="{% static 'image/logo.png' %}" class="logo-img img-fluid" alt=""/></a>
+            <a href=""><img src="{% static 'image/logo.png' %}" class="logo-img img-fluid" alt=""/></a>
         </div>
 
         <div class="d-flex align-items-center">
-                        <div class="dropdown notification-box">
-                            <div class="position-relative d-block d-md-none " type="button" id="dropdownMenuButton"
-                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="{% static 'image/notification.png' %}" class="notification-img" alt="">
-                                <div class="badge">2</div>
-                            </div>
-                            <div class="dropdown-menu notification-menu-items custom-bg"
-                                 aria-labelledby="dropdownMenuButton">
-                                <a class="border-bottom" href="#"> ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ </a>
-                                <a class="border-bottom" href="#"> ایپسوم متن ساختگی با تولید </a>
-                                <a class="border-bottom" href="#"> ایپسوم متن ساختگی با تولید سادگی</a>
+            <div class="dropdown notification-box">
+                <div class="position-relative d-block d-md-none " type="button" id="dropdownMenuButton"
+                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="{% static 'image/notification.png' %}" class="notification-img" alt="">
+                    <div class="badge">2</div>
+                </div>
+                <div class="dropdown-menu notification-menu-items custom-bg"
+                     aria-labelledby="dropdownMenuButton">
+                    <a class="border-bottom" href="#"> ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ </a>
+                    <a class="border-bottom" href="#"> ایپسوم متن ساختگی با تولید </a>
+                    <a class="border-bottom" href="#"> ایپسوم متن ساختگی با تولید سادگی</a>
 
-                            </div>
-                        </div>
+                </div>
+            </div>
 
             <div class="header-account">
                 <div class="notification-box dropdown">
@@ -115,7 +115,7 @@
                              aria-labelledby="dropdownMenuButton">
                             <a class="" href="{% url 'user_panel' request.user.id %}"> پروفایل</a>
                             <a class="" href="#"> مورد علاقه ها</a>
-                            <a class="" href="#"> خروج</a>
+                            <a class="" href="{% url 'logout' %}"> خروج</a>
                         </div>
                     {% else %}
                         <a href="" class="btn account-btn" type="button" id="dropdownMenuButton"

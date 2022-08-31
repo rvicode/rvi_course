@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from django.views import generic
 from django.db.models import Q
 
+from blog.models import CustomUser
 from blog.models import Course, Comment, Category, Language, Field
 
 
@@ -64,3 +65,9 @@ def search_view(request):
     page_number = request.GET.get('page')
     course = paginator.get_page(page_number)
     return render(request, 'home/all_videos.html', {'course': course})
+
+
+class AboutUsView(generic.ListView):
+    model = CustomUser
+    template_name = 'home/about_us.html'
+    context_object_name = 'profile'
