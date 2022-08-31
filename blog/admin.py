@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Course, Comment, Field, Language
+from .models import Category, Course, Comment, Field, Language, AboutUs
 
 
 @admin.register(Course)
@@ -26,3 +26,8 @@ class FieldsAdmin(admin.ModelAdmin):
 @admin.register(Language)
 class LanguagesAdmin(admin.ModelAdmin):
     list_display = ('title',)
+
+
+@admin.register(AboutUs)
+class AboutUsAdmin(admin.ModelAdmin):
+    list_display = ['title', 'description', 'our_products']

@@ -5,6 +5,7 @@ from django.db.models import Q
 
 from blog.models import CustomUser
 from blog.models import Course, Comment, Category, Language, Field
+from blog.models import AboutUs
 
 
 class LastUpdateView(generic.ListView):
@@ -67,7 +68,7 @@ def search_view(request):
     return render(request, 'home/all_videos.html', {'course': course})
 
 
-class AboutUsView(generic.ListView):
-    model = CustomUser
-    template_name = 'home/about_us.html'
-    context_object_name = 'profile'
+def about_us_view(request):
+    profile = CustomUser.objects.all()
+    description = AboutUs.objects.all()
+    return render(request, 'home/about_us.html', {'profile': profile, 'description': description})

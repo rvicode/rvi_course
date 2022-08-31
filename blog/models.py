@@ -78,3 +78,16 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'نظر'
         verbose_name_plural = 'نظرات'
+
+
+class AboutUs(models.Model):
+    title = models.CharField(max_length=50, verbose_name='موضوع')
+    description = models.TextField(verbose_name='توضیحات')
+    our_products = models.TextField(verbose_name='محصولات ما')
+
+    class Meta:
+        verbose_name = 'درباره ما'
+        verbose_name_plural = 'درباره ما'
+
+    def __str__(self):
+        return self.title

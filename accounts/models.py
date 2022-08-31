@@ -9,7 +9,7 @@ class CustomUser(AbstractUser):
     profile_pic = models.ImageField(null=True, blank=True, verbose_name='تصویر', upload_to='image_profiles/')
     is_teacher = models.BooleanField(default=False, verbose_name='معلم است')
     is_team_member = models.BooleanField(default=False, verbose_name='عضو تیم است')
-    date_created = models.DateTimeField(auto_now_add=True)
+    date_created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ساخت')
 
     class Meta:
         verbose_name = 'اکانت کاربر'
