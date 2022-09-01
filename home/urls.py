@@ -5,7 +5,7 @@ from . import views
 
 app_name = 'home'
 urlpatterns = [
-    path('', views.LastUpdateView.as_view(), name='home'),
+    path('', views.ListUpdateView.as_view(), name='home'),
     path('all_video_update/', views.AllVideoUpdateView.as_view(), name='all_video_update'),
     path('all_video/', views.AllVideoView.as_view(), name='all_video'),
     path('detail/<int:pk>', views.video_detail_view, name='detail_video'),

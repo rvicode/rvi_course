@@ -11,58 +11,58 @@ from blog.models import AboutUs, ContactUs
 from .forms import ContactUsForm
 
 
-class LastUpdateView(generic.ListView):
+class ListUpdateView(generic.ListView):  # show list update in home
     queryset = Course.objects.all().order_by('-created')[:3]
     template_name = 'home/home.html'
     context_object_name = 'course'
 
 
-class AllVideoUpdateView(generic.ListView):
+class AllVideoUpdateView(generic.ListView):  # show all video update
     queryset = Course.objects.all().order_by('-created')
     template_name = 'home/all_videos.html'
     context_object_name = 'course'
     paginate_by = 12
 
 
-class AllVideoView(generic.ListView):
+class AllVideoView(generic.ListView):  # show all video
     model = Course
     template_name = 'home/all_videos.html'
     context_object_name = 'course'
     paginate_by = 12
 
 
-def category_list(request, pk):
+def category_list(request, pk):  # show category courses
     video = get_object_or_404(Category, id=pk)
     course = video.category.all()
     return render(request, 'home/all_videos.html', {'course': course})
 
 
-def language_list(request, pk):
+def language_list(request, pk):  # show languages courses
     video = get_object_or_404(Language, id=pk)
     course = video.language.all()
     return render(request, 'home/all_videos.html', {'course': course})
 
 
-def field_list(request, pk):
+def field_list(request, pk):  # show field courses
     video = get_object_or_404(Field, id=pk)
     course = video.field.all()
     return render(request, 'home/all_videos.html', {'course': course})
 
 
-def video_detail_view(request, pk):
+def video_detail_view(request, pk):  # show detail video
     course = get_object_or_404(Course, id=pk)
     if request.user.is_authenticated:
-        if request.method == 'POST':
+        if request.method == 'POST':  # if send comment
             parent_id = request.POST.get('parent_id')
             body = request.POST.get('body')
-            print(parent_id)
-            print(body)
-            Comment.objects.create(username=request.user, course=course, parent_id=parent_id, body=body)
+            if body and parent_id:
+                Comment.objects.create(username=request.user, course=course, parent_id=parent_id, body=body)
+                return render(request, 'home/video_detail.html', {'course': course})
 
     return render(request, 'home/video_detail.html', {'course': course})
 
 
-def search_view(request):
+def search_view(request):  # search video
     q = request.GET.get('q')
     list_course = Course.objects.filter(Q(title__icontains=q) | Q(description__icontains=q))
     paginator = Paginator(list_course, 12)  # Show 12 contacts per page.
@@ -71,13 +71,13 @@ def search_view(request):
     return render(request, 'home/all_videos.html', {'course': course})
 
 
-def about_us_view(request):
+def about_us_view(request):  # show about us page
     profile = CustomUser.objects.all()
     description = AboutUs.objects.all()
     return render(request, 'home/about_us.html', {'profile': profile, 'description': description})
 
 
-def contact_us_view(request):
+def contact_us_view(request):  # show contact us page
     form = ContactUsForm()  # call form
 
     if request.method == "POST":  # If request is post
@@ -102,7 +102,7 @@ def contact_us_view(request):
                 ContactUs.objects.create(user=user, email=email, subject=subject, massage=massage)
                 return redirect('home:home')
 
-            else:   # If form isn't valid
+            else:   # show error if form isn't valid
                 return HttpResponse('<h1 style="color:red;">لطفا فرم را کامل پر کنید</h1>'
                                     '<br>'
                                     '<a href="/contact_us"><button class="btn btn-primary">برگشت</button></a>')
