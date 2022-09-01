@@ -94,10 +94,10 @@ class AboutUs(models.Model):
 
 
 class ContactUs(models.Model):
-    user = models.ForeignKey(CustomUser, max_length=100, on_delete=models.CASCADE, verbose_name='کاربر')
+    user = models.CharField(max_length=100, verbose_name='کاربر')
     email = models.CharField(max_length=100, verbose_name='ایمیل')
     subject = models.CharField(max_length=100, verbose_name='موضوع')
-    massage = models.TextField(verbose_name='متن فرستاده شده')
+    massage = models.TextField(verbose_name='متن')
 
     class Meta:
         verbose_name = 'ارتباط با ما'

@@ -1,11 +1,14 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect, HttpResponse
 from django.core.paginator import Paginator
+from django.urls import reverse_lazy
 from django.views import generic
 from django.db.models import Q
 
 from blog.models import CustomUser
 from blog.models import Course, Comment, Category, Language, Field
-from blog.models import AboutUs
+from blog.models import AboutUs, ContactUs
+
+from .forms import ContactUsForm
 
 
 class LastUpdateView(generic.ListView):
@@ -72,3 +75,33 @@ def about_us_view(request):
     profile = CustomUser.objects.all()
     description = AboutUs.objects.all()
     return render(request, 'home/about_us.html', {'profile': profile, 'description': description})
+
+
+def contact_us_view(request):
+    form = ContactUsForm()  # call form
+
+    if request.method == "POST":  # If request is post
+        if request.user.is_authenticated:  # If user is authenticated
+            form = ContactUsForm(request.POST)
+            if form.is_valid():
+                user = form.save(commit=False)
+                user.user = request.user
+                user.email = request.user.email
+                user.save()
+                form = ContactUsForm()
+            else:
+                form = ContactUsForm()
+        else:
+            user = request.POST.get('username')
+            email = request.POST.get('email')
+            subject = request.POST.get('subject')
+            massage = request.POST.get('massage')
+            if user and email and subject and massage:
+                ContactUs.objects.create(user=user, email=email, subject=subject, massage=massage)
+                return redirect('home:home')
+            else:
+                return HttpResponse('<h1 style="color:red;">لطفا فرم را کامل پر کنید</h1>'
+                                    '<br>'
+                                    '<a href="/contact_us"><button class="btn btn-primary">برگشت</button></a>')
+
+    return render(request, 'home/contact_us.html', {'form': form})

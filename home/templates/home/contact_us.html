@@ -1,0 +1,65 @@
+{% extends '_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block title %}
+    درباره ما
+{% endblock %}
+
+{% block body %}
+    <main>
+        <h2 class="text-center border-bottom  py-5 bg-white">ارتباط با ما</h2>
+        <section class="container my-5">
+
+            <form method="post" action="">
+                {% csrf_token %}
+                {% if request.user.is_authenticated %}
+                    {{ form | crispy  }}
+                {% else %}
+                    {% for error in errors.0 %}
+                        {% if error %}
+                            {{ error }}
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="container">
+                        <div class="mt-4">
+                            <p>*نام و نام خانوادگی:</p>
+                            <label>
+                                <input name="username" type="text" placeholder="علی علوی">
+                            </label>
+                        </div>
+                        <hr>
+                        <br>
+                        <div class="mt-4">
+                            <p>*ایمیل:</p>
+                            <label>
+                                <input name="email" type="email" placeholder="x@x.x">
+                            </label>
+                        </div>
+                        <hr>
+                        <br>
+                        <div class="mt-4">
+                            <p>*موضوع:</p>
+                            <label>
+                                <input name="subject" type="text" placeholder="دوره پایتون">
+                            </label>
+                        </div>
+                        <hr>
+                        <br>
+                        <div class="mt-4">
+                            <p>*متن:</p>
+                            <label>
+                                <textarea name="massage"  rows="6" placeholder="سلام خسته نباشید..." required=""></textarea>
+                            </label>
+                            <hr>
+                        </div>
+                    </div>
+                {% endif %}
+                <button class="btn btn-primary mt-4" type="submit"> ارسال </button>
+            </form>
+        </section>
+    </main>
+{% endblock %}

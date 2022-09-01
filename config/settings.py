@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     # MY PACKAGE
     'django_cleanup.apps.CleanupConfig',
+    'crispy_forms',
 
     # MY APP
     'accounts',
