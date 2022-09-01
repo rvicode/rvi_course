@@ -91,15 +91,18 @@ def contact_us_view(request):
                 form = ContactUsForm()
             else:
                 form = ContactUsForm()
-        else:
+
+        else:   # If user isn't authenticated
             user = request.POST.get('username')
             email = request.POST.get('email')
             subject = request.POST.get('subject')
             massage = request.POST.get('massage')
-            if user and email and subject and massage:
+
+            if user and email and subject and massage:  # If form is valid
                 ContactUs.objects.create(user=user, email=email, subject=subject, massage=massage)
                 return redirect('home:home')
-            else:
+
+            else:   # If form isn't valid
                 return HttpResponse('<h1 style="color:red;">لطفا فرم را کامل پر کنید</h1>'
                                     '<br>'
                                     '<a href="/contact_us"><button class="btn btn-primary">برگشت</button></a>')
