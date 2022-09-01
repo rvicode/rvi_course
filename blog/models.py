@@ -72,12 +72,12 @@ class Comment(models.Model):
     body = models.TextField(verbose_name='نظر')
     created = models.DateField(auto_now_add=True, verbose_name='تاریخ')
 
-    def __str__(self):
-        return f'{self.body}'
-
     class Meta:
         verbose_name = 'نظر'
         verbose_name_plural = 'نظرات'
+
+    def __str__(self):
+        return f'{self.body}'
 
 
 class AboutUs(models.Model):
@@ -91,3 +91,17 @@ class AboutUs(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ContactUs(models.Model):
+    user = models.ForeignKey(CustomUser, max_length=100, on_delete=models.CASCADE, verbose_name='کاربر')
+    email = models.CharField(max_length=100, verbose_name='ایمیل')
+    subject = models.CharField(max_length=100, verbose_name='موضوع')
+    massage = models.TextField(verbose_name='متن فرستاده شده')
+
+    class Meta:
+        verbose_name = 'ارتباط با ما'
+        verbose_name_plural = 'ارتباط با ما'
+
+    def __str__(self):
+        return f'{self.user}: {self.email}'
