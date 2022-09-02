@@ -8,7 +8,7 @@ from blog.models import CustomUser
 from blog.models import Course, Comment, Category, Language, Field
 from blog.models import AboutUs, ContactUs
 
-from .forms import ContactUsForm
+from .forms import ContactUsForm, ContactUsUserForm
 
 
 class ListUpdateView(generic.ListView):  # show list update in home
@@ -78,10 +78,9 @@ def about_us_view(request):  # show about us page
 
 
 def contact_us_view(request):  # show contact us page
-    form = ContactUsForm()  # call form
 
-    if request.method == "POST":  # If request is post
-        if request.user.is_authenticated:  # If user is authenticated
+    if request.user.is_authenticated:  # If user is authenticated
+        if request.method == "POST":  # If request is post
             form = ContactUsForm(request.POST)
             if form.is_valid():
                 user = form.save(commit=False)
@@ -89,22 +88,15 @@ def contact_us_view(request):  # show contact us page
                 user.email = request.user.email
                 user.save()
                 form = ContactUsForm()
-            else:
-                form = ContactUsForm()
+        else:
+            form = ContactUsForm()  # call form
 
-        else:   # If user isn't authenticated
-            user = request.POST.get('username')
-            email = request.POST.get('email')
-            subject = request.POST.get('subject')
-            massage = request.POST.get('massage')
-
-            if user and email and subject and massage:  # If form is valid
-                ContactUs.objects.create(user=user, email=email, subject=subject, massage=massage)
-                return redirect('home:home')
-
-            else:   # show error if form isn't valid
-                return HttpResponse('<h1 style="color:red;">لطفا فرم را کامل پر کنید</h1>'
-                                    '<br>'
-                                    '<a href="/contact_us"><button class="btn btn-primary">برگشت</button></a>')
-
+    else:  # If user isn't authenticated
+        if request.method == "POST":
+            form = ContactUsUserForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                return redirect('home:contact_us')
+        else:
+            form = ContactUsUserForm()  # call form
     return render(request, 'home/contact_us.html', {'form': form})
