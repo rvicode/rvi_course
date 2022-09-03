@@ -46,8 +46,8 @@ class Course(models.Model):
     language = models.ManyToManyField(Language, related_name='language',
                                       verbose_name='زبان برنامه نویسی', null=True, blank=True)
     description = models.TextField(verbose_name='متن', null=True, blank=True)
-    image = models.ImageField(upload_to='media/Courses/image', verbose_name='تصویر', null=True, blank=True)
-    file = models.FileField(upload_to='media/Courses/video', verbose_name='فایل', null=True, blank=True)
+    image = models.ImageField(upload_to='Courses/image/', verbose_name='تصویر', null=True, blank=True)
+    file = models.FileField(upload_to='Courses/video/', verbose_name='فایل', null=True, blank=True)
     time_video = models.CharField(max_length=20, verbose_name='زمان ویدیو')
     created = models.DateField(auto_now_add=True, verbose_name='تاریخ نشر')
     update = models.DateField(auto_now=True, verbose_name='تاریخ بروز رسانی')
