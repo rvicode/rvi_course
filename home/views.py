@@ -3,6 +3,8 @@ from django.core.paginator import Paginator
 from django.urls import reverse_lazy
 from django.views import generic
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 
 from blog.models import CustomUser
 from blog.models import Course, Comment, Category, Language, Field
@@ -49,6 +51,7 @@ def field_list(request, pk):  # show field courses
     return render(request, 'home/all_videos.html', {'course': course})
 
 
+@login_required
 def video_detail_view(request, pk):  # show detail video
     course = get_object_or_404(Course, id=pk)
 
@@ -103,14 +106,22 @@ def contact_us_view(request):  # show contact us page
     return render(request, 'home/contact_us.html', {'form': form})
 
 
-class UpdateVideoView(generic.UpdateView):
+class UpdateVideoView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Course
     form_class = UpdateVideoForm
     template_name = 'home/update_video.html'
     success_url = reverse_lazy('home:home')
 
+    def test_func(self):
+        obj = self.get_object()
+        return obj.user == self.request.user
 
-class DeleteVideoView(generic.DeleteView):
+
+class DeleteVideoView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     model = Course
     template_name = 'home/delete_video.html'
     success_url = reverse_lazy('home:home')
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.user == self.request.user
