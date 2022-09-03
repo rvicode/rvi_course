@@ -41,7 +41,7 @@
                                         <button class="btn btn-danger">حذف</button>
                                     </a>
                                     <span> | </span>
-                                    <a href="">
+                                    <a href="{% url 'home:update_video' course.id %}">
                                         <button class="btn btn-primary">ویرایش</button>
                                     </a>
                                 </div>
@@ -170,17 +170,12 @@
                                 <h4>درباره استاد</h4>
                             </div>
                             <div class="d-flex align-items-center py-3">
-                                {% if course.author.image %}
-                                    <img src="{{ course.author.image.url }}"
-                                         alt="student" class="teacher-profile">
+                                {% if course.author.profile_pic %}
+                                    <img src="{{ course.author.profile_pic.url }}" alt="student"
+                                         class="teacher-profile">
                                 {% else %}
-                                    {% if course.author.profile_pic %}
-                                        <img src="{{ course.author.profile_pic.url }}" alt="student"
-                                             class="teacher-profile">
-                                    {% else %}
-                                        <img src="{% static 'image/sutdent-prof.png' %}" alt="student"
-                                             class="teacher-profile">
-                                    {% endif %}
+                                    <img src="{% static 'image/sutdent-prof.png' %}" alt="student"
+                                         class="teacher-profile">
                                 {% endif %}
                                 <p class="user-name pr-2">{{ course.author.username }}</p>
                             </div>

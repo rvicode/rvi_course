@@ -27,7 +27,7 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between video-category-time">
                                         <h6 class="">{{ item.title }}</h6>
-                                        <span class="vid-time">{{ item.created }}</span>
+                                        <span class="vid-time">{{ item.time_video }}</span>
                                     </div>
                                     <div class="video-card-details">
                                         <div>
@@ -48,7 +48,7 @@
 
                             </div>
                             <a href="{% url 'home:detail_video' item.id %}">
-                                <h5 class="video-card-title m-2">{{ item.description }}</h5>
+                                <h5 class="video-card-title m-2">{{ item.description | truncatewords:10 }}</h5>
                             </a>
                             <div class="my-3 pb-3 mx-2">
                                 <i class="fa fa-user  ml-1 "></i>

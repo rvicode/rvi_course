@@ -8,7 +8,7 @@ from blog.models import CustomUser
 from blog.models import Course, Comment, Category, Language, Field
 from blog.models import AboutUs
 
-from .forms import ContactUsForm, ContactUsUserForm
+from .forms import ContactUsForm, ContactUsUserForm, UpdateVideoForm
 
 
 class ListUpdateView(generic.ListView):  # show list update in home
@@ -101,6 +101,13 @@ def contact_us_view(request):  # show contact us page
         else:
             form = ContactUsUserForm()  # call form
     return render(request, 'home/contact_us.html', {'form': form})
+
+
+class UpdateVideoView(generic.UpdateView):
+    model = Course
+    form_class = UpdateVideoForm
+    template_name = 'home/update_video.html'
+    success_url = reverse_lazy('home:home')
 
 
 class DeleteVideoView(generic.DeleteView):
