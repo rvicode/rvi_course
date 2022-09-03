@@ -1,4 +1,4 @@
-{% load crispy_forms_tags %}
+{% if request.user.is_teacher %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,12 +33,11 @@
             </div>
         </div>
         <div class="col-3">
-
             <div class="card my-3 shadow">
                 <h5 class="card-header bg-warning text-light">راهنما</h5>
                 <div class="card-body">
                     <p class="card-text">
-                        اطلاعات کتاب را در فرم این صفحه وارد کنید و سپس بر روی دکمه ذخیره کلیک کنید.
+                        اطلاعات را در فرم این صفحه وارد کنید و سپس بر روی دکمه ذخیره کلیک کنید.
                     </p>
                 </div>
             </div>
@@ -48,3 +47,8 @@
 </div>
 </body>
 </html>
+{% else %}
+<div class="container mt-5">
+    <h1>forbidden 403</h1>
+</div>
+{% endif %}

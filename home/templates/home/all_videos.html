@@ -22,7 +22,11 @@
                             <div class="custom-bg">
                                 <div class="video-card">
                                     <a href="{{ item.get_absolute_url }}" class="position-relative d-block ">
-                                        <img src="{{ item.image.url }}" alt="" class="img-fluid w-100 h-100">
+                                        {% if item.image %}
+                                            <img src="{{ item.image.url }}" alt="" class="img-fluid w-100 h-100">
+                                        {% else %}
+                                            <img src="{{ item.title }}" alt="">
+                                        {% endif %}
                                         <div class="video-play-btn">
                                             <i class="fa fa-play"></i>
                                         </div>

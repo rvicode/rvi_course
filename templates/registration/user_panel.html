@@ -15,19 +15,18 @@
 
                         <div class="p-3 custom-bg user-details user-item my-2">
                             {% if request.user.profile_pic %}
-                             <div class="user-panel-profile">
-                                <img src="{{ request.user.profile_pic.url }}" alt="">
-                            </div>
+                                <div class="user-panel-profile">
+                                    <img src="{{ request.user.profile_pic.url }}" alt="">
+                                </div>
                             {% else %}
-                            <div class="user-panel-profile">
-                                <img src="{% static 'image/sutdent-prof.png' %}" alt="">
-                            </div>
+                                <div class="user-panel-profile">
+                                    <img src="{% static 'image/sutdent-prof.png' %}" alt="">
+                                </div>
                             {% endif %}
                             <div class="row">
-
                                 <div class="col-lg-6 mb-4">
                                     <p class="">نام و نام خانوادگی:</p>
-                                      <h6 class=" font-weight-bold">{{ request.user.get_full_name }}</h6>
+                                    <h6 class=" font-weight-bold">{{ request.user.get_full_name }}</h6>
                                 </div>
                                 <div class="col-lg-6 mb-4">
                                     <p class="">پست الکترونیک:</p>
@@ -42,19 +41,30 @@
                                     <h6 class=" font-weight-bold">{{ request.user.username }}</h6>
                                 </div>
                                 {% if request.user.is_teacher %}
-                                <div class="col-lg-6 mb-4">
-                                    <p class="">توضیحات:</p>
-                                    <h6 class=" font-weight-bold">{{ request.user.description }}</h6>
-                                </div>
+                                    <div class="col-lg-6 mb-4">
+                                        <p class="">توضیحات:</p>
+                                        <h6 class=" font-weight-bold">{{ request.user.description }}</h6>
+                                    </div>
                                 {% endif %}
-                              <div class="col-12">
+                            {% if request.user.is_teacher %}
+                                <div class="col-12">
                                     <div class="text-center">
-                                        <a class="" href="{% url 'edit_user_panel' %}">
+                                        <a class="btn btn-success" href="{% url 'home:create_video' %}">
+                                            <i class="fa fa-plus"></i>
+                                            ارسال فایل ویدیویی
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <a class="btn btn-primary my-3" href="{% url 'edit_user_panel' %}">
                                             <i class="fa fa-edit"></i>
                                             ویرایش اطلاعات شخصی
                                         </a>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>

@@ -19,3 +19,9 @@ class UpdateVideoForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = ('title', 'category', 'field', 'language', 'description', 'image', 'file', 'time_video', )
+
+
+class CreateVideoForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = ('title', 'category', 'field', 'language', 'description', 'image', 'file', 'time_video', )

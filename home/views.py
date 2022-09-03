@@ -10,7 +10,7 @@ from blog.models import CustomUser
 from blog.models import Course, Comment, Category, Language, Field
 from blog.models import AboutUs
 
-from .forms import ContactUsForm, ContactUsUserForm, UpdateVideoForm
+from .forms import ContactUsForm, ContactUsUserForm, UpdateVideoForm, CreateVideoForm
 
 
 class ListUpdateView(generic.ListView):  # show list update in home
@@ -106,10 +106,24 @@ def contact_us_view(request):  # show contact us page
     return render(request, 'home/contact_us.html', {'form': form})
 
 
+class CreateVideoView(LoginRequiredMixin, generic.CreateView):
+    form_class = CreateVideoForm
+    template_name = 'home/form_video.html'
+    success_url = reverse_lazy('home:home')
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST, request.FILES)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.author = request.user
+            obj.save()
+            return redirect('home:home')
+
+
 class UpdateVideoView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Course
     form_class = UpdateVideoForm
-    template_name = 'home/update_video.html'
+    template_name = 'home/form_video.html'
     success_url = reverse_lazy('home:home')
 
     def test_func(self):
