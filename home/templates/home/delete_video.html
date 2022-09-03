@@ -1,0 +1,25 @@
+{% extends '_base.html' %}
+
+{% load static %}
+
+{% block title %}
+    حذف ویدیو
+{% endblock %}
+
+{% block body %}
+    <main>
+        <section class="py-5">
+            <div class="container">
+                <h1>
+                    حذف ویدیو:
+                </h1>
+                <p style="color: #ff2f2f;">آیا مطمان هستید که میخواهید این ویدیو را حذف کنید</p>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">بله</button>
+                    <button type="submit" class="btn btn-success">خیر</button>
+                </form>
+            </div>
+        </section>
+    </main>
+{% endblock %}

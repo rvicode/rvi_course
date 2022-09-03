@@ -6,7 +6,7 @@ from django.db.models import Q
 
 from blog.models import CustomUser
 from blog.models import Course, Comment, Category, Language, Field
-from blog.models import AboutUs, ContactUs
+from blog.models import AboutUs
 
 from .forms import ContactUsForm, ContactUsUserForm
 
@@ -51,13 +51,14 @@ def field_list(request, pk):  # show field courses
 
 def video_detail_view(request, pk):  # show detail video
     course = get_object_or_404(Course, id=pk)
+
     if request.user.is_authenticated:
         if request.method == 'POST':  # if send comment
             parent_id = request.POST.get('parent_id')
             body = request.POST.get('body')
-            if body and parent_id:
-                Comment.objects.create(username=request.user, course=course, parent_id=parent_id, body=body)
-                return render(request, 'home/video_detail.html', {'course': course})
+
+            Comment.objects.create(username=request.user, course=course, parent_id=parent_id, body=body)
+            return render(request, 'home/video_detail.html', {'course': course})
 
     return render(request, 'home/video_detail.html', {'course': course})
 
@@ -100,3 +101,9 @@ def contact_us_view(request):  # show contact us page
         else:
             form = ContactUsUserForm()  # call form
     return render(request, 'home/contact_us.html', {'form': form})
+
+
+class DeleteVideoView(generic.DeleteView):
+    model = Course
+    template_name = 'home/delete_video.html'
+    success_url = reverse_lazy('home:home')

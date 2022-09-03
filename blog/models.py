@@ -38,7 +38,7 @@ class Category(models.Model):
 
 
 class Course(models.Model):
-    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name='نویسنده')
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name='مدرس')
     title = models.CharField(max_length=60, verbose_name='مقدمه')
     category = models.ManyToManyField(Category, related_name='category',
                                       verbose_name='حوزه برنامه نویسی', null=True, blank=True)

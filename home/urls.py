@@ -15,4 +15,5 @@ urlpatterns = [
     path('field_list/<int:pk>', views.field_list, name='field_list'),
     path('profile', views.about_us_view, name='about_us'),
     path('contact_us', views.contact_us_view, name='contact_us'),
+    path('delete_video/<int:pk>', views.DeleteVideoView.as_view(), name='delete_video'),
 ]

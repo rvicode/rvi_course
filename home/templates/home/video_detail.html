@@ -35,6 +35,19 @@
                                     <h5 class="close-btn" onclick="stopPlayer()">X</h5>
                                 </div>
                             </div>
+                            {% if course.author == user %}
+                                <div class="mt-4">
+                                    <a href="{% url 'home:delete_video' course.id %}">
+                                        <button class="btn btn-danger">حذف</button>
+                                    </a>
+                                    <span> | </span>
+                                    <a href="">
+                                        <button class="btn btn-primary">ویرایش</button>
+                                    </a>
+                                </div>
+                                <br>
+                            {% endif %}
+
                             <!-- end video -->
                             <!-- title -->
                             <h3 class="video-title my-3">{{ course.title }}
@@ -100,8 +113,8 @@
                                         <div class="comment my-3 p-2">
                                             <div class=" d-flex align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center justify-content-center">
-                                                    {% if comments.username.image %}
-                                                        <img src="{{ comments.username.image.url }}"
+                                                    {% if comments.username.profile_pic %}
+                                                        <img src="{{ comments.username.profile_pic.url }}"
                                                              alt="student" class="teacher-profile">
                                                     {% else %}
                                                         <img src="{% static 'image/sutdent-prof.png' %}" alt="student"
@@ -126,8 +139,8 @@
                                             <div class="comment my-3 p-2 comment-child">
                                                 <div class=" d-flex align-items-center justify-content-between">
                                                     <div class="d-flex align-items-center justify-content-center">
-                                                        {% if replay.username.image %}
-                                                            <img src="{{ replay.username.image.url }}"
+                                                        {% if replay.username.profile_pic %}
+                                                            <img src="{{ replay.username.profile_pic.url }}"
                                                                  alt="student" class="teacher-profile">
                                                         {% else %}
                                                             <img src="{% static 'image/sutdent-prof.png' %}"
@@ -148,8 +161,8 @@
                             </div>
                         </div>
                     </div>
-                        <!-- main -->
-                        <!-- side -->
+                    <!-- main -->
+                    <!-- side -->
 
                     <aside class="col-md-4 ">
                         <div class="custom-bg p-2 teacher-card">
