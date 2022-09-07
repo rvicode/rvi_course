@@ -19,4 +19,6 @@ class CustomUserChangeForm(UserChangeForm):
 class EditCustomUserForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ('username','first_name', 'last_name', 'email', 'phone', 'description', 'profile_pic')
+        fields = (
+            'username', 'first_name', 'last_name', 'email', 'phone', 'description', 'profile_pic', 'instagram',
+            'whatsapp', 'telegram', 'facebook', 'twitter', 'reddit', 'github', 'linkedin')

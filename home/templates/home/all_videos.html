@@ -57,7 +57,11 @@
                                 </a>
                                 <div class="my-3 pb-3 mx-2">
                                     <i class="fa fa-user  ml-1 "></i>
-                                    <span>{{ item.author }}</span>
+                                    {% if item.author.get_full_name %}
+                                        <span> {{ item.author.get_full_name }} </span>
+                                    {% else %}
+                                        <span> {{ item.author.username }} </span>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -68,18 +72,20 @@
                 {% if page_obj.has_other_pages %}
                     <div class="d-flex align-items-center justify-content-center mb-3 pagination">
                         {% if page_obj.has_previous %}
-                            <a href="?page={{ page_obj.previous_page_number }}" class="mx-1"><i class="fa fa-chevron-right"></i></a>
+                            <a href="?page={{ page_obj.previous_page_number }}" class="mx-1"><i
+                                    class="fa fa-chevron-right"></i></a>
                         {% endif %}
                         {% for i in page_obj.paginator.page_range %}
                             {% if page_obj.number == i %}
                                 <a href="?page={{ i }}" class="active mx-1">{{ i }}</a>
                             {% else %}
-                                <a href="?page={{ i }}" >{{ i }}</a>
+                                <a href="?page={{ i }}">{{ i }}</a>
                             {% endif %}
                         {% endfor %}
 
-                    {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}" class="mx-1"><i class="fa fa-chevron-left"></i></a>
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}" class="mx-1"><i
+                                    class="fa fa-chevron-left"></i></a>
                         {% endif %}
                     </div>
                 {% endif %}

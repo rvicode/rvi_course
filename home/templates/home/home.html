@@ -56,7 +56,11 @@
                                 </a>
                                 <div class="my-3 pb-3 mx-2">
                                     <i class="fa fa-user  ml-1 "></i>
-                                    <span>{{ item.author }}</span>
+                                    {% if item.author.get_full_name %}
+                                        <span>{{ item.author.get_full_name }}</span>
+                                    {% else %}
+                                        <span>{{ item.author.username }}</span>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

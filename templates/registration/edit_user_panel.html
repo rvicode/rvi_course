@@ -32,33 +32,87 @@
                                     <!-- item -->
                                     <div class="user-panel-field">
                                         <i class="fa fa-user"></i>
+                                        {{ form.first_name.label }}:
                                         {{ form.first_name }}
                                     </div>
                                     <!-- item -->
                                     <div class="user-panel-field">
                                         <i class="fa fa-user"></i>
+                                        {{ form.last_name.label }}:
                                         {{ form.last_name }}
                                     </div>
                                     <!-- item -->
                                     <div class="user-panel-field">
                                         <i class="fa fa-envelope"></i>
+                                        {{ form.email.label }}:
                                         {{ form.email }}
                                     </div>
                                     <!-- item -->
                                     <div class="user-panel-field">
+                                        <i class="fa fa-instagram"></i>
+                                        {{ form.instagram.label }}:
+                                        {{ form.instagram }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-whatsapp"></i>
+                                        {{ form.whatsapp.label }}:
+                                        {{ form.whatsapp }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-telegram"></i>
+                                        {{ form.telegram.label }}:
+                                        {{ form.telegram }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-facebook"></i>
+                                        {{ form.facebook.label }}:
+                                        {{ form.facebook }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-twitter"></i>
+                                        {{ form.twitter.label }}:
+                                        {{ form.twitter }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-reddit"></i>
+                                        {{ form.reddit.label }}:
+                                        {{ form.reddit }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-github"></i>
+                                        {{ form.github.label }}:
+                                        {{ form.github }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
+                                        <i class="fa fa-linkedin"></i>
+                                        {{ form.linkedin.label }}:
+                                        {{ form.linkedin }}
+                                    </div>
+                                    <!-- item -->
+                                    <div class="user-panel-field">
                                         <i class="fa fa-phone"></i>
+                                        {{ form.phone.label }}:
                                         {{ form.phone }}
                                     </div>
                                     <!-- item -->
                                     <div class="user-panel-field">
                                         <i class="fa fa-user-circle"></i>
+                                        {{ form.username.label }}:
                                         {{ form.username }}
                                     </div>
-
                                     {% if request.user.is_teacher %}
                                         <!-- item -->
                                         <div class="user-panel-field">
                                             <i class="fa fa-edit"></i>
+                                            {{ form.description.label }}:
+                                            <hr>
                                             {{ form.description }}
                                         </div>
                                     {% endif %}

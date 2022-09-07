@@ -177,14 +177,47 @@
                                     <img src="{% static 'image/sutdent-prof.png' %}" alt="student"
                                          class="teacher-profile">
                                 {% endif %}
-                                <p class="user-name pr-2">{{ course.author.username }}</p>
+                                {% if course.author.get_full_name %}
+                                    <p class="user-name pr-2">{{ course.author.get_full_name }}</p>
+                                {% else %}
+                                    <p class="user-name pr-2"> {{ course.author.username }} </p>
+                                {% endif %}
                             </div>
                             <p class="color78 teacher-description py-3">{{ course.author.description }}</p>
                             <div class="teacher-social-media d-flex align-items-center justify-content-center flex-wrap">
-                                <a href=""> <i class="fa fa-instagram"></i></a>
-                                <a href=""> <i class="fa fa-github"></i></a>
-                                <a href=""> <i class="fa fa-linkedin"></i></a>
-                                <a href=""> <i class="fa fa-twitter"></i></a>
+
+                                {% if course.author.instagram %}
+                                    <a href="https://www.instagram.com/{{ course.author.instagram }}"> <i
+                                            class="fa fa-instagram"></i></a>
+                                {% endif %}
+                                {% if course.author.whatsapp %}
+                                    <a href="https://web.whatsapp.com/{{ course.author.whatsapp }}"> <i
+                                            class="fa fa-whatsapp"></i></a>
+                                {% endif %}
+                                {% if course.author.telegram %}
+                                    <a href="https://web.telegram.org/{{ course.author.telegram }}"> <i
+                                            class="fa fa-telegram"></i></a>
+                                {% endif %}
+                                {% if course.author.facebook %}
+                                    <a href="https://www.facebook.com/{{ course.author.facebook }}"> <i
+                                            class="fa fa-facebook"></i></a>
+                                {% endif %}
+                                {% if course.author.twitter %}
+                                    <a href="https://twitter.com/{{ course.author.twitter }}"> <i
+                                            class="fa fa-twitter"></i></a>
+                                {% endif %}
+                                {% if course.author.reddit %}
+                                    <a href="https://www.reddit.com/{{ course.author.reddit }}"> <i
+                                            class="fa fa-reddit"></i></a>
+                                {% endif %}
+                                {% if course.author.github %}
+                                    <a href="https://github.com/{{ course.author.github }}"> <i
+                                            class="fa fa-github"></i></a>
+                                {% endif %}
+                                {% if course.author.linkedin %}
+                                    <a href="https://www.linkedin.com/{{ course.author.linkedin }}"> <i
+                                            class="fa fa-linkedin"></i></a>
+                                {% endif %}
                             </div>
                         </div>
                     </aside>

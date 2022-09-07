@@ -11,10 +11,10 @@
         <h2 class="text-center border-bottom  py-5 bg-white">درباره ما</h2>
         <section class="container my-5">
             {% for des in description %}
-            <p class=" text-justify lineh30">{{ des.description }}</p>
-            <h3 class="my-3">محصولات ما</h3>
+                <p class=" text-justify lineh30">{{ des.description }}</p>
+                <h3 class="my-3">محصولات ما</h3>
 
-            <p class="text-justify lineh30">{{ des.our_products }}</p>
+                <p class="text-justify lineh30">{{ des.our_products }}</p>
             {% endfor %}
         </section>
 
@@ -26,7 +26,12 @@
                     {% if pro.is_team_member %}
                         <div class="member">
                             <div class="member-img-box">
-                                <img alt="pic" class="ui circular image" src="{{ pro.profile_pic.url }}">
+                                {% if pro.profile_pic %}
+                                    <img alt="pic" class="ui circular image" src="{{ pro.profile_pic.url }}">
+                                {% else %}
+                                    <img alt="pic" class="ui circular image"
+                                         src="{% static '/image/sutdent-prof.png' %}">
+                                {% endif %}
                                 <div class="member-overlay"></div>
                             </div>
                             <p>{{ pro.get_full_name }}</p>
@@ -37,14 +42,19 @@
             <br>
             <br>
             <br>
-        <h3 class="our-team-title">مدرس ها</h3>
+            <h3 class="our-team-title">مدرس ها</h3>
             <div class="d-flex align-items-center justify-content-center flex-wrap">
                 <!-- item -->
                 {% for pro in profile %}
                     {% if pro.is_teacher %}
                         <div class="member">
                             <div class="member-img-box">
-                                <img alt="pic" class="ui circular image" src="{{ pro.profile_pic.url }}">
+                                {% if pro.profile_pic %}
+                                    <img alt="pic" class="ui circular image" src="{{ pro.profile_pic.url }}">
+                                {% else %}
+                                    <img alt="pic" class="ui circular image"
+                                         src="{% static '/image/sutdent-prof.png' %}">
+                                {% endif %}
                                 <div class="member-overlay"></div>
                             </div>
                             <p>{{ pro.get_full_name }}</p>
