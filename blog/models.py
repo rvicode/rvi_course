@@ -105,3 +105,17 @@ class ContactUs(models.Model):
 
     def __str__(self):
         return f'{self.user}: {self.email}'
+
+
+class Like(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='likes', verbose_name='کاربر')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='likes', verbose_name='ویدیو')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'لایک'
+        verbose_name_plural = 'لایک ها'
+        ordering = ('-created_at', )
+
+    def __str__(self):
+        return f'{self.user.username}: {self.course.title}'

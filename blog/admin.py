@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Course, Comment, Field, Language, AboutUs, ContactUs
+from .models import Category, Course, Comment, Field, Language, AboutUs, ContactUs, Like
 
 
 @admin.register(Course)
@@ -43,3 +43,9 @@ class AboutUsAdmin(admin.ModelAdmin):
 class ContactUsAdmin(admin.ModelAdmin):
     list_display = ('user', 'email', 'subject', 'massage', )
     search_fields = ['user', 'email', 'subject', 'massage', ]
+
+
+@admin.register(Like)
+class LikeAdmin(admin.ModelAdmin):
+    list_display = ('user', 'course', 'created_at', )
+    search_fields = ['user', 'course', 'created_at', ]

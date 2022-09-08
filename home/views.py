@@ -1,3 +1,5 @@
+from abc import ABC
+
 from django.shortcuts import get_object_or_404, render, redirect, HttpResponse
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
@@ -6,9 +8,7 @@ from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 
-from blog.models import CustomUser
-from blog.models import Course, Comment, Category, Language, Field
-from blog.models import AboutUs
+from blog.models import Course, Comment, Category, Language, Field, AboutUs, CustomUser, Like
 
 from .forms import ContactUsForm, ContactUsUserForm, UpdateVideoForm, CreateVideoForm
 
@@ -51,19 +51,21 @@ def field_list(request, pk):  # show field courses
     return render(request, 'home/all_videos.html', {'course': course})
 
 
-@login_required
-def video_detail_view(request, pk):  # show detail video
-    course = get_object_or_404(Course, id=pk)
+class VideoDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Course
+    template_name = 'home/video_detail.html'
+    context_object_name = 'course'
 
-    if request.user.is_authenticated:
-        if request.method == 'POST':  # if send comment
-            parent_id = request.POST.get('parent_id')
-            body = request.POST.get('body')
-
-            Comment.objects.create(username=request.user, course=course, parent_id=parent_id, body=body)
-            return render(request, 'home/video_detail.html', {'course': course})
-
-    return render(request, 'home/video_detail.html', {'course': course})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            if self.request.user.likes.filter(course_id=self.object.pk, user_id=self.request.user.id).exists():
+                context['is_liked'] = True
+            else:
+                context['is_liked'] = False
+        else:
+            return redirect('login')
+        return context
 
 
 def search_view(request):  # search video
@@ -139,3 +141,14 @@ class DeleteVideoView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteVie
     def test_func(self):
         obj = self.get_object()
         return obj.user == self.request.user
+
+
+def like_video(request, pk):
+    if request.user.is_authenticated:
+        try:
+            liked = Like.objects.get(course_id=pk, user_id=request.user.id)
+            liked.delete()
+        except:
+            Like.objects.create(course_id=pk, user_id=request.user.id)
+
+    return redirect('home:detail_video', pk)
