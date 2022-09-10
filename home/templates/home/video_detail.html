@@ -63,7 +63,7 @@
                                         <ul class="post-tags">
                                             <span id="count">{{ course.likes.count }}</span>
                                             {% if is_liked %}
-                                                <a onclick="like('{{ course.id }}', '{{ course.slug }}')">
+                                                <a onclick="like('{{ course.slug }}', '{{ course.id }}')">
                                                     <i id="like" class="fa fa-heart liked" type='button'
                                                        aria-hidden="true"></i>
                                                 </a>
