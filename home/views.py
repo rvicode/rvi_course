@@ -145,7 +145,7 @@ class DeleteVideoView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteVie
 
 
 @login_required
-def like(request, slug, pk):
+def like(request, pk, slug):
     try:
         like = Like.objects.get(course__slug=slug, user_id=request.user.id)
         like.delete()

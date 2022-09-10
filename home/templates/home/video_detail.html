@@ -61,21 +61,17 @@
                                     </div>
                                     <div>
                                         <ul class="post-tags">
+                                            <span id="count">{{ course.likes.count }}</span>
                                             {% if is_liked %}
-                                                <li><a onclick="like({{ course.slug }} , {{ course.id }})">
-                                                    <span id="count"> {{ course.likes.count }} </span>
-                                                    <i id="like"
-                                                       style="font-size: 20px"
-                                                       class="fa fa-heart liked">
-                                                    </i>
-                                                </a></li>
+                                                <a onclick="like('{{ course.id }}', '{{ course.slug }}')">
+                                                    <i id="like" class="fa fa-heart liked" type='button'
+                                                       aria-hidden="true"></i>
+                                                </a>
                                             {% else %}
-                                                <li><a onclick="like({{ course.slug }} , {{ course.id }})"> <span
-                                                        id="count"> {{ course.likes.count }} </span> <i
-                                                        id="like"
-                                                        style="font-size: 20px"
-                                                        class="fa fa-heart"></i>
-                                                </a></li>
+                                                <a onclick="like('{{ course.slug }}', '{{ course.id }}')">
+                                                    <i id="like" class="fa fa-heart view-like" type='button'
+                                                       aria-hidden="true"></i>
+                                                </a>
                                             {% endif %}
                                         </ul>
                                     </div>
