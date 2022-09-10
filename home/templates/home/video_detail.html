@@ -61,16 +61,16 @@
                                     </div>
                                     <div>
                                         <ul class="post-tags">
-                                            <span id="count">{{ course.likes.count }}</span>
+
                                             {% if is_liked %}
-                                                <a onclick="like('{{ course.slug }}', '{{ course.id }}')">
-                                                    <i id="like" class="fa fa-heart liked" type='button'
-                                                       aria-hidden="true"></i>
+                                                <a onclick="like(this, '{{ course.slug }}', '{{ course.id }}')"><span
+                                                        id="count">{{ course.likes.count }}</span>
+                                                    <i id="like" class="fa fa-heart liked" type='button'></i>
                                                 </a>
                                             {% else %}
-                                                <a onclick="like('{{ course.slug }}', '{{ course.id }}')">
-                                                    <i id="like" class="fa fa-heart view-like" type='button'
-                                                       aria-hidden="true"></i>
+                                                <a onclick="like(this, '{{ course.slug }}', '{{ course.id }}')">
+                                                    <span>{{ course.likes.count }}</span>
+                                                    <i id="like" class="fa fa-heart view-like" type='button'></i>
                                                 </a>
                                             {% endif %}
                                         </ul>
