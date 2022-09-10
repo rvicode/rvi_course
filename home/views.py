@@ -131,7 +131,7 @@ class UpdateVideoView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateVie
 
     def test_func(self):
         obj = self.get_object()
-        return obj.user == self.request.user
+        return obj.author == self.request.user
 
 
 class DeleteVideoView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
@@ -141,7 +141,7 @@ class DeleteVideoView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteVie
 
     def test_func(self):
         obj = self.get_object()
-        return obj.user == self.request.user
+        return obj.author == self.request.user
 
 
 @login_required

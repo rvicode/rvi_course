@@ -17,8 +17,11 @@
                 <form action="" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger">بله</button>
-                    <button type="submit" class="btn btn-success">خیر</button>
                 </form>
+                <div class="my-2"><a href="{% url 'home:detail_video' course.id %}">
+                    <button type="submit" class="btn btn-primary">برگشت به عقب</button>
+                </a>
+                </div>
             </div>
         </section>
     </main>
