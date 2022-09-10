@@ -18,5 +18,5 @@ urlpatterns = [
     path('create_video', views.CreateVideoView.as_view(), name='create_video'),
     path('update_video/<int:pk>', views.UpdateVideoView.as_view(), name='update_video'),
     path('delete_video/<int:pk>', views.DeleteVideoView.as_view(), name='delete_video'),
-    path('like_video/<int:pk>', views.like_video, name='like_video'),
+    path('like/<slug:slug>/<int:pk>', views.like, name='like'),
 ]

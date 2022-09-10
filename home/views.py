@@ -1,5 +1,6 @@
 from abc import ABC
 
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect, HttpResponse
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
@@ -143,12 +144,12 @@ class DeleteVideoView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteVie
         return obj.user == self.request.user
 
 
-def like_video(request, pk):
-    if request.user.is_authenticated:
-        try:
-            liked = Like.objects.get(course_id=pk, user_id=request.user.id)
-            liked.delete()
-        except:
-            Like.objects.create(course_id=pk, user_id=request.user.id)
-
-    return redirect('home:detail_video', pk)
+@login_required
+def like(request, slug, pk):
+    try:
+        like = Like.objects.get(course__slug=slug, user_id=request.user.id)
+        like.delete()
+        return JsonResponse({'response': 'unliked'})
+    except:
+        Like.objects.create(course_id=pk, user_id=request.user.id)
+        return JsonResponse({'response': 'liked'})
