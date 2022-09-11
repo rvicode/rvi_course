@@ -19,4 +19,5 @@ urlpatterns = [
     path('update_video/<int:pk>', views.UpdateVideoView.as_view(), name='update_video'),
     path('delete_video/<int:pk>', views.DeleteVideoView.as_view(), name='delete_video'),
     path('like/<str:slug>/<int:pk>', views.like, name='like'),
+    path('comments/<int:pk>', views.comment_view, name='comments'),
 ]

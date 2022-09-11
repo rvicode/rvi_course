@@ -153,3 +153,11 @@ def like(request, slug, pk):
     except:
         Like.objects.create(course_id=pk, user_id=request.user.id)
         return JsonResponse({'response': 'liked'})
+
+
+def comment_view(request, pk):
+    course = get_object_or_404(Course, id=pk)
+    body = request.POST.get('body')
+    parent_id = request.POST.get('parent_id')
+    Comment.objects.create(username=request.user, course=course, parent_id=parent_id, body=body)
+    return redirect('home:detail_video', pk)

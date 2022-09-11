@@ -102,16 +102,21 @@
                                 </div>
 
                                 {% if request.user.is_authenticated %}
-                                    <form id="body" method="post" action="">
-
+                                    <form id="body" method="post" action="{% url 'home:comments' course.id %}">
                                         {% csrf_token %}
+
                                         <input type="hidden" name="parent_id" id="parent_id">
-                                        <textarea class="w-100 p-2 comment-area" name="body"
-                                                  cols="30" rows="10"
-                                                  placeholder="دیدگاه خود را بنویسید"></textarea>
+
+                                        <label>
+                                            <textarea class="w-100 p-2 comment-area" name="body"
+                                                      cols="30" rows="10"
+                                                      placeholder="دیدگاه خود را بنویسید"></textarea>
+                                        </label>
+
                                         <div class="d-flex align-items-center justify-content-end pt-3">
                                             <button type="submit" class="btn custom-btn">ارسال نظر</button>
                                         </div>
+
                                     </form>
                                 {% else %}
                                     <p style="color:red">برای کامنت گذاشتن لطفا اول <a href="{% url 'singup' %}">ثبت
@@ -277,6 +282,10 @@
         function set_value(id) {
             document.getElementById('parent_id').value = id;
             window.location.href = '#body'
+        }
+
+        function set_course_id() {
+            document.getElementById('course').value = {{ course.id }};
         }
     </script>
 
