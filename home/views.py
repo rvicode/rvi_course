@@ -1,5 +1,3 @@
-from abc import ABC
-
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect, HttpResponse
 from django.core.paginator import Paginator
@@ -102,7 +100,7 @@ def contact_us_view(request):  # show contact us page
         if request.method == "POST":
             form = ContactUsUserForm(request.POST)
             if form.is_valid():
-                user = form.save()
+                form.save()
                 return redirect('home:contact_us')
         else:
             form = ContactUsUserForm()  # call form

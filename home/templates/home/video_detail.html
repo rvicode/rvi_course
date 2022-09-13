@@ -61,7 +61,6 @@
                                     </div>
                                     <div>
                                         <ul class="post-tags">
-
                                             {% if is_liked %}
                                                 <a onclick="like(this, '{{ course.slug }}', '{{ course.id }}')"><span
                                                         id="count">{{ course.likes.count }}</span>
@@ -81,48 +80,35 @@
                             <div class="border-bottom pb-3">
                                 <h4 class="my-3">درباره فیلم</h4>
                                 <p class="color78">{{ course.description }}</p>
-
-                                <div class="labels">
-                                    <h4 class="my-3">برچسب ها</h4>
-                                    <ul class="d-flex align-items-center">
-                                        <li><a href="#" title="">#گردشگری</a></li>
-                                        <li><a href="#" title="">#تفریحی </a></li>
-                                        <li><a href="#" title="">#دشت نور</a></li>
-                                        <li><a href="#" title="">#مکان های تفریحی</a></li>
-                                    </ul>
-                                </div>
+                                <br>
+                                <br>
                             </div>
                             <!-- end des -->
 
                             <!-- comments -->
                             <div>
-
                                 <div class="py-3">
                                     <span>{{ course.comment.count }} نظر</span>
                                 </div>
 
-                                {% if request.user.is_authenticated %}
-                                    <form id="body" method="post" action="{% url 'home:comments' course.id %}">
-                                        {% csrf_token %}
+                                <form id="body" method="post" action="{% url 'home:comments' course.id %}">
+                                    {% csrf_token %}
 
-                                        <input type="hidden" name="parent_id" id="parent_id">
+                                    <input type="hidden" name="parent_id" id="parent_id">
 
-                                        <label>
+                                    <label>
                                             <textarea class="w-100 p-2 comment-area" name="body"
                                                       cols="30" rows="10"
                                                       placeholder="دیدگاه خود را بنویسید"></textarea>
-                                        </label>
+                                    </label>
 
-                                        <div class="d-flex align-items-center justify-content-end pt-3">
-                                            <button type="submit" class="btn custom-btn">ارسال نظر</button>
-                                        </div>
+                                    <div class="d-flex align-items-center justify-content-end pt-3">
+                                        <button type="submit" class="btn custom-btn">ارسال نظر</button>
+                                    </div>
 
-                                    </form>
-                                {% else %}
-                                    <p style="color:red">برای کامنت گذاشتن لطفا اول <a href="{% url 'singup' %}">ثبت
-                                        نام</a> کنید</p>
-                                {% endif %}
-
+                                </form>
+                                {#                                    <p style="color:red">برای کامنت گذاشتن لطفا اول <a href="{% url 'singup' %}">ثبت#}
+                                {#                                        نام</a> کنید</p>#}
                                 {% for comments in course.comment.all %}
                                     {% if comments.parent == None %}
                                         <!-- comment -->
