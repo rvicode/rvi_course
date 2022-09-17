@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import os
+from environs import Env
+
+# for environment variables
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z_m-hc&$t%m24%mryqai6j!474@w_z8t*ytwhy#7rz#w1@%ov%'
+SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DJANGO_DEBUG")
 
 ALLOWED_HOSTS = []
 
@@ -40,6 +44,9 @@ INSTALLED_APPS = [
     # MY PACKAGE
     'django_cleanup.apps.CleanupConfig',
     'crispy_forms',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 
     # MY APP
     'accounts',
@@ -79,6 +86,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    # django allauth
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+SITE_ID = 1
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -126,11 +139,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 # static file config
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets')]
+STATICFILES_DIRS = [str(BASE_DIR.joinpath('assets'))]
 
 # media file config
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

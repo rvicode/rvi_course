@@ -22,8 +22,8 @@
                                     {{ form.errors }}
                                 </div>
                                 <div class="field">
-                                    <i class="fa fa-user"> {{ form.username.label }}: </i>
-                                    {{ form.username }}
+                                    <i class="fa fa-user"> {{ form.login.label }}: </i>
+                                    {{ form.login }}
                                 </div>
 
                                 <div class="field">
@@ -34,7 +34,7 @@
                                 <div class="mr-1 d-flex justify-content-between">
                                     <hr>
                                     <div>
-                                        <a href="{% url 'password_reset' %}" class="small">رمز عبور خود را فراموش کرده اید؟</a>
+                                        <a href="{% url 'account_reset_password' %}" class="small">رمز عبور خود را فراموش کرده اید؟</a>
                                     </div>
 
                                 </div>
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="pb-2 border-bottom">
                                     <span class="small">حساب کاربری ندارید؟</span>
-                                    <a href="{% url 'singup' %}" class="small">
+                                    <a href="{% url 'account_signup' %}" class="small">
                                         عضویت در سایت
                                     </a>
                                 </div>

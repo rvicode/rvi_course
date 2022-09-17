@@ -47,7 +47,7 @@
                              aria-labelledby="dropdownMenuButton">
                             <a class="" href="{% url 'user_panel' request.user.id %}">پروفایل</a>
                             <a class="" href="#"> مورد علاقه ها</a>
-                            <a class="" href="{% url 'logout' %}"> خروج</a>
+                            <a class="" href="{% url 'account_logout' %}"> خروج</a>
                         </div>
                     </div>
                 </div>
@@ -62,8 +62,8 @@
                         </a>
                         <div class="dropdown-menu account-menu-items custom-bg"
                              aria-labelledby="dropdownMenuButton">
-                            <a class="" href="{% url 'login' %}"> <i class=" fa fa-account"></i>ورود</a>
-                            <a class="" href="{% url 'singup' %}"> ثبت نام</a>
+                            <a class="" href="{% url 'account_login' %}"> <i class=" fa fa-account"></i>ورود</a>
+                            <a class="" href="{% url 'account_signup' %}"> ثبت نام</a>
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
                              aria-labelledby="dropdownMenuButton">
                             <a class="" href="{% url 'user_panel' request.user.id %}"> پروفایل</a>
                             <a class="" href="#"> مورد علاقه ها</a>
-                            <a class="" href="{% url 'logout' %}"> خروج</a>
+                            <a class="" href="{% url 'account_logout' %}"> خروج</a>
                         </div>
                     {% else %}
                         <a href="" class="btn account-btn" type="button" id="dropdownMenuButton"
@@ -126,8 +126,8 @@
                         </a>
                         <div class="dropdown-menu account-menu-items custom-bg"
                              aria-labelledby="dropdownMenuButton">
-                            <a class="" href="{% url 'login' %}"><i class=" fa fa-account"></i>ورود</a>
-                            <a class="" href="{% url 'singup' %}"> ثبت نام</a>
+                            <a class="" href="{% url 'account_login' %}"><i class=" fa fa-account"></i>ورود</a>
+                            <a class="" href="{% url 'account_signup' %}"> ثبت نام</a>
                         </div>
                     {% endif %}
                 </div>

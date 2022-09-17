@@ -8,13 +8,13 @@ from .forms import CustomUserCreationForm, EditCustomUserForm
 
 class SingUpView(generic.CreateView):
     form_class = CustomUserCreationForm
-    template_name = 'registration/singup.html'
+    template_name = 'account/singup.html'
     success_url = reverse_lazy('login')
 
 
 class UserPanelView(generic.ListView):
     model = CustomUser
-    template_name = 'registration/user_panel.html'
+    template_name = 'account/user_panel.html'
 
 
 def edit_user_panel_view(request):
@@ -32,8 +32,8 @@ def edit_user_panel_view(request):
                     form.save()
                     return redirect('home:home')
                 else:
-                    return render(request, 'registration/edit_user_panel.html', {'form': form})
+                    return render(request, 'account/edit_user_panel.html', {'form': form})
 
         else:
             form = EditCustomUserForm(instance=user)
-            return render(request, 'registration/edit_user_panel.html', {'form': form})
+            return render(request, 'account/edit_user_panel.html', {'form': form})
