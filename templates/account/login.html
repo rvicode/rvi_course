@@ -21,8 +21,9 @@
                                 <div style="color: red" class="container">
                                     {{ form.errors }}
                                 </div>
+
                                 <div class="field">
-                                    <i class="fa fa-user"> {{ form.login.label }}: </i>
+                                    <i class="fa fa-envelope"> {{ form.login.label }}: </i>
                                     {{ form.login }}
                                 </div>
 
@@ -30,11 +31,14 @@
                                     <i class="fa fa-lock"> {{ form.password.label }}: </i>
                                     {{ form.password }}
                                 </div>
+                                <label for="id_remember">مرا به یادآور:</label>
+                                <input type="checkbox" name="remember" id="id_remember">
 
                                 <div class="mr-1 d-flex justify-content-between">
                                     <hr>
                                     <div>
-                                        <a href="{% url 'account_reset_password' %}" class="small">رمز عبور خود را فراموش کرده اید؟</a>
+                                        <a href="{% url 'account_reset_password' %}" class="small">رمز عبور خود را
+                                            فراموش کرده اید؟</a>
                                     </div>
 
                                 </div>
@@ -58,15 +62,18 @@
                                     <div class="social-accunt">
 
                                         <a title="Google" class="" href="">
-                                            <img height="24" src="{% static 'image/google.svg' %}" class="d-block m-auto">
+                                            <img height="24" src="{% static 'image/google.svg' %}"
+                                                 class="d-block m-auto">
                                         </a>
 
                                         <a title="GitHub" class="" href="">
-                                            <img height="24" src="{% static 'image/github.svg' %}" class="d-block m-auto">
+                                            <img height="24" src="{% static 'image/github.svg' %}"
+                                                 class="d-block m-auto">
                                         </a>
 
                                         <a title="LinkedIn" class="" href="">
-                                            <img height="24" src="{% static 'image/linkedin.svg' %}" class="d-block m-auto">
+                                            <img height="24" src="{% static 'image/linkedin.svg' %}"
+                                                 class="d-block m-auto">
                                         </a>
 
                                     </div>

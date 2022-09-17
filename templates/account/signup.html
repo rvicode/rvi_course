@@ -18,11 +18,6 @@
                                 {% csrf_token %}
                                 <div style="color: red">
                                     {{ form.errors }}
-
-                                </div>
-                                <div class="field">
-                                    <i class="fa fa-user"> {{ form.username.label }}: </i>
-                                    {{ form.username }}
                                 </div>
 
                                 <div class="field">
@@ -41,7 +36,7 @@
 
                                 <div class="pb-2 border-bottom">
                                     <span class="small">حساب کاربری دارید؟</span>
-                                    <a href="{% url 'login' %}" class="small">
+                                    <a href="{% url 'account_login' %}" class="small">
                                         ورود به حساب
                                     </a>
                                 </div>
