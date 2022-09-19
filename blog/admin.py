@@ -3,10 +3,15 @@ from django.contrib import admin
 from .models import Category, Course, Comment, Field, Language, AboutUs, ContactUs, Like
 
 
+class CommentInLine(admin.StackedInline):
+    model = Comment
+
+
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     list_display = ('author', 'title', 'created', 'update', )
     search_fields = ['author', 'title', 'created', 'update', ]
+    inlines = (CommentInLine,)
 
 
 @admin.register(Category)
