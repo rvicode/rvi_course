@@ -9,7 +9,9 @@
             </div>
             <div class="nav-search-btn">
                 <form action="{% url 'home:search' %}" method="get">
-                    <input name="q" type="search" placeholder="جستجو">
+                    <label>
+                        <input name="q" type="search" placeholder="جستجو">
+                    </label>
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
 
@@ -70,6 +72,49 @@
 
             {% endif %}
         </div>
+
+        <nav class="nav-menu p-0 m-0 d-flex d-sm-flex d-md-none d-lg-none">
+            <li id="" class="mx-3 menu-item"><a href="{% url 'home:home' %}" class="nav-menu-item ">خانه</a></li>
+
+            <li id="" class="mx-3"><a class="nav-menu-item-mob">زبان های برنامه نویسی
+                <i class="fa fa-chevron-left chev-icon pr-1"></i>
+            </a>
+                <ul class="sub-menu-mob">
+                    {% for lan in language %}
+                        <a href="{% url 'home:language_list' lan.id %}">{{ lan.title }}</a>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li id="" class="mx-3"><a class="nav-menu-item-mob ">فریمورک
+                <i class="fa fa-chevron-left chev-icon pr-1"></i>
+            </a>
+                <ul class="sub-menu-mob">
+                    {% for fie in field %}
+                        <a href="{% url 'home:field_list' fie.id %}">{{ fie.title }}</a>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li id="" class="mx-3">
+                <a class="nav-menu-item-mob ">حوضه های برنامه نویسی
+                    <i class="fa fa-chevron-left chev-icon pr-1"></i>
+                </a>
+                <ul class="sub-menu-mob">
+                    {% for cat in category %}
+                        <a href="{% url 'home:category_list' cat.id %}">{{ cat.title }}</a>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li id="" class="mx-3 menu-item"><a href="{% url 'home:all_video' %}" class="nav-menu-item"><p>ویدیو ها</p>
+            </a>
+            </li>
+            <li id="" class="mx-3 menu-item"><a href="{% url 'home:about_us' %}" class="nav-menu-item "><p> درباره
+                ما</p></a>
+            </li>
+            <li id="" class="mx-3 menu-item"><a href="{% url 'home:contact_us' %}" class="nav-menu-item "><p>ارتباط با
+                ما </p>ما </a>
+            </li>
+
+        </nav>
 
     </div>
     <section
@@ -135,4 +180,34 @@
         </div>
 
     </section>
+    <nav class="nav-menu nav-menu-pc  d-none d-md-flex px-4" id="navbar">
+        <li id="" class="mx-3 menu-item"><a href="{% url 'home:home' %}" class="nav-menu-item ">خانه</a></li>
+        <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item ">زبان های برنامه نویسی </a>
+            <ul class="sub-menu">
+                {% for lan in language %}
+                    <a href="{% url 'home:language_list' lan.id %}">{{ lan.title }}</a>
+                {% endfor %}
+            </ul>
+        </li>
+        <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item">فریمورک </a>
+            <ul class="sub-menu">
+                {% for fie in field %}
+                    <a href="{% url 'home:field_list' fie.id %}">{{ fie.title }}</a>
+                {% endfor %}
+            </ul>
+        </li>
+        <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item">حوضه های برنامه نویسی</a>
+            <ul class="sub-menu">
+                {% for cat in category %}
+                    <a href="{% url 'home:category_list' cat.id %}">{{ cat.title }}</a>
+                {% endfor %}
+            </ul>
+        </li>
+        <li id="" class="mx-3 menu-item"><a href="{% url 'home:all_video' %}" class="nav-menu-item"><p>ویدیو ها</p></a>
+        </li>
+        <li id="" class="mx-3 menu-item"><a href="{% url 'home:about_us' %}" class="nav-menu-item "><p> درباره ما</p>
+        </a></li>
+        <li id="" class="mx-3 menu-item"><a href="{% url 'home:contact_us' %}" class="nav-menu-item "><p>ارتباط با
+            ما</p></a></li>
+    </nav>
 </div>
