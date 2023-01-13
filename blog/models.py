@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 from accounts.models import CustomUser
 
@@ -8,8 +9,8 @@ class Field(models.Model):
     title = models.CharField(max_length=100, verbose_name='فریمورک')
 
     class Meta:
-        verbose_name = 'فریمورک'
-        verbose_name_plural = 'فریمورک ها'
+        verbose_name = _("framework")
+        verbose_name_plural = _("frameworks")
 
     def __str__(self):
         return self.title
