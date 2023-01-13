@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-13 17:03+0330\n"
+"POT-Creation-Date: 2023-01-13 17:59+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,10 +16,123 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-#: .\models.py:12
+
+#: .\apps.py:8
+msgid "Blog"
+msgstr "وبلاگ"
+
+#: .\models.py:9 .\models.py:12 .\models.py:46
 msgid "framework"
 msgstr "فریمورک"
 
 #: .\models.py:13
 msgid "frameworks"
 msgstr "فریمورک ها"
+
+#: .\models.py:20 .\models.py:23 .\models.py:48
+msgid "Language programming"
+msgstr "زبان برنامه نویسی"
+
+#: .\models.py:24
+msgid "Languages programming"
+msgstr "زبان های برنامه نویسی"
+
+#: .\models.py:31 .\models.py:34 .\models.py:45
+msgid "Category programming"
+msgstr "دسته بندی برنامه نویسی"
+
+#: .\models.py:35
+msgid "Categorys programming"
+msgstr "دسته بندی های برنامه نویسی"
+
+#: .\models.py:42
+msgid "Teacher"
+msgstr "مدرس"
+
+#: .\models.py:43 .\models.py:85
+msgid "Title"
+msgstr "موضوع"
+
+#: .\models.py:49 .\models.py:86
+msgid "Description"
+msgstr "متن"
+
+#: .\models.py:50
+msgid "Image"
+msgstr "تصویر"
+
+#: .\models.py:51
+msgid "File"
+msgstr "فایل"
+
+#: .\models.py:52
+msgid "Time_video"
+msgstr "زمان ویدیو"
+
+#: .\models.py:53 .\models.py:74 .\models.py:114
+msgid "Created"
+msgstr "تاریخ ساخت"
+
+#: .\models.py:54
+msgid "Updated"
+msgstr "تاریخ بروزرسانی"
+
+#: .\models.py:58 .\models.py:70 .\models.py:113
+msgid "Course"
+msgstr "دوره"
+
+#: .\models.py:59
+msgid "Courses"
+msgstr "دوره ها"
+
+#: .\models.py:69 .\models.py:98 .\models.py:112
+msgid "User"
+msgstr "کاربر"
+
+#: .\models.py:72
+msgid "Parent"
+msgstr "پاسخ"
+
+#: .\models.py:73
+msgid "description"
+msgstr "متن"
+
+#: .\models.py:77
+msgid "Comment"
+msgstr "کامنت"
+
+#: .\models.py:78
+msgid "Comments"
+msgstr "کامنت ها"
+
+#: .\models.py:87
+msgid "Our_products"
+msgstr "محصولات ما"
+
+#: .\models.py:90 .\models.py:91
+msgid "About Us"
+msgstr "درباره ما"
+
+#: .\models.py:99
+msgid "Email"
+msgstr "ایمیل"
+
+#: .\models.py:100
+msgid "Subject"
+msgstr "موضوع"
+
+#: .\models.py:101
+msgid "Massage"
+msgstr "متن"
+
+#: .\models.py:104 .\models.py:105
+msgid "Contact Us"
+msgstr "ارتباط با ما"
+
+#: .\models.py:117
+msgid "Like"
+msgstr "لایک"
+
+#: .\models.py:118
+msgid "Likes"
+msgstr "لایک ها"
