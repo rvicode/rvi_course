@@ -13,7 +13,7 @@
 <span><img src="https://img.shields.io/badge/Docker-2CA5E0?style=flat&logo=docker&logoColor=white" /></span>
 <span><img src="https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white" /></span>
 
-This is a course shop project and boilerplate to start a django project with postgresql as database running on docker.
+This is a project learning programming and boilerplate to start a django project with postgresql as a database running on docker.
 
 # How to use?
 
