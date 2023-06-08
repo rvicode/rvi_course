@@ -22,7 +22,7 @@ This is a project learning programming and boilerplate to start a django project
 First clone the project.
 
 ```bash
-git clone https://github.com/rvicode/Django_with_Docker_and_PostgreSql.git
+git clone https://github.com/rvicode/rvi_course.git
 ```
 
 Then make sure Docker is running.
